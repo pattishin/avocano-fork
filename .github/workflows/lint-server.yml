@@ -1,5 +1,9 @@
 name: Python linting
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,7 +16,7 @@ jobs:
       - name: Python Checkstyle
         timeout-minutes: 20
         run: |
-          pylint --rcfile=./.pylintrc ./src/*/*.py
+          pylint --rcfile=./.pylintrc ./server/*/*.py
         with:
           files: server/
 
