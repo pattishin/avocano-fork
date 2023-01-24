@@ -2,11 +2,19 @@ name: Python linting
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'server/**'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'server/**'
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: server
     steps:
       - uses: actions/checkout@v1
       - name: Set up Python 3.10
@@ -17,6 +25,3 @@ jobs:
         timeout-minutes: 20
         run: |
           pylint --rcfile=./.pylintrc ./server/*/*.py
-        with:
-          files: server/
-

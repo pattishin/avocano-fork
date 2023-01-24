@@ -2,11 +2,19 @@ name: Server unit tests
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'server/**'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'server/**'
 jobs:
   server-unit-tests:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: server
     steps:
     - name: Python Unit Tests
       timeout-minutes: 20
@@ -23,5 +31,3 @@ jobs:
             deactivate
           popd
         done
-      with:
-        files: server/
