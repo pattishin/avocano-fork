@@ -14,11 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
 
 def main():
     """Run administrative tasks."""
