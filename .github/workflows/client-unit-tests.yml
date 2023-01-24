@@ -1,11 +1,5 @@
 name: Client unit tests
-
-on:
-  push:
-  pull_request:
-
-working-directory: ./client
-
+on: [push]
 jobs:
   client-unit-tests:
     runs-on: ubuntu-latest
