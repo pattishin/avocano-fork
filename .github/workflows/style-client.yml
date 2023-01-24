@@ -1,0 +1,24 @@
+name: JS linting with Prettier
+
+on:
+  push:
+  pull_request:
+
+working-directory: ./client
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      name: Configure npm caching
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/workflows/style-client.yml') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+    - name: Run prettier
+      run: |-
+        npx prettier

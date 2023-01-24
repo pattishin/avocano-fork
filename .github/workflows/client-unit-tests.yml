@@ -1,0 +1,22 @@
+name: Client unit tests
+
+on:
+  push:
+  pull_request:
+
+working-directory: ./client
+
+jobs:
+  client-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      name: Configure npm caching
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/workflows/client-unit-tests.yml') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+      # TODO: Hook lit app unit tests to be run.
